@@ -51,7 +51,11 @@ def get_Model(mname):
         hydro_file = "model_dumps/AGN1-HEP17-3e-1-es-hi-hires-x8/agn1.merged.out1.02000.tab"
         hydro_file1 = "model_dumps/AGN1-HEP17-3e-1-es-hi-hires-x8/agn1.merged.out2.02000.tab"
         sn = str(2000).zfill(5)
-    return (hydro_file, hydro_file1,sn)
+    if (mname=='Ax8'):
+        hydro_file = "model_dumps/AGN1-HEP19-3e-1-es-hi-hires-x8/"
+    if (mname=='Bx8'):
+        hydro_file = "model_dumps/AGN1-HEP17-3e-1-es-hi-hires-x8/"
+    return hydro_file
 
 # function for getting files for different lines
 
