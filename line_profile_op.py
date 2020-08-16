@@ -7,11 +7,11 @@ Stores tau and flux corresponding to each Model and Line at Output/Model/Line
 '''
 
 # importing necessary libraries and scripts
-
+import os
 import numpy as np
 from opacity_table_v3 import *           # reads XSTAR lookup table
-from matplotlib import pyplot as plt  
-import matplotlib      
+#from matplotlib import pyplot as plt  
+#import matplotlib      
 from my_athena_reader import *           # reads Athena++ output file
 import pickle
 import get_inp as gi			 # contains location of all input files for running LP code
@@ -46,8 +46,7 @@ def LP_vel(Model,sn,Line):
 	# opacity_file is the opacity table from XSTAR
 	# Model and Line names as strings, sn the snapshot number
 	
-	Doublets = ['Si XIV 6','Si XIV 5','Mg XII','C II','S IV','C IV','C VI','Fe XXVI','O VI','He II','N V','O VIII','Si IV']
-	
+	Doublets = ['Si_XIV_6','Si_XIV_5','Mg_XII','C_II','S_IV','C_IV','C_VI','Fe_XXVI','O_VI','He_II','N_V','O_VIII_19','Si_IV']
 	flux = {}
 	tau = {}
 	
@@ -153,12 +152,16 @@ def LP_vel(Model,sn,Line):
 	tau['v'] = v
 	flux['v'] = v
 
-	path = Line+"/"+sns+".p"
+	path1 = "Output/"+Model+"/Optical_depth/"+Line+"/"
+	path2 = "Output/"+Model+"/Flux/"+Line+"/"
 	
     	# printing result in output files
-	
-	pickle.dump(tau, open("Output/"+Model+"/Optical_depth/"+path, "wb"))
-	pickle.dump(flux, open("Output/"+Model+"/Flux/"+path, "wb"))
+	if not os.path.exists(path1):
+		os.mkdir(path1)
+	if not os.path.exists(path2):
+		os.mkdir(path2)
+	pickle.dump(tau, open(path1+sns+".p", "wb"))
+	pickle.dump(flux, open(path2+sns+".p", "wb"))
 	
 	# define function block to calculate LP against nu-space for Doublets
 
@@ -190,7 +193,7 @@ def LP_vel(Model,sn,Line):
 		# storing the optical depth of first of the doublet lines
 		tau_init = [0 for i in range(len(v))]
 		v_init = [0 for i in range(len(v))]
-		print("Begin LP calculations for Model "+Model+','+sn)
+		print("Begin LP calculations for Model "+Model+','+sns)
 		for i,snap in enumerate(lines):
 			nu_lab = nu_lab0[i]
 			print ("Line "+Line, snap)
@@ -250,7 +253,12 @@ def LP_vel(Model,sn,Line):
 		flux['v'] = v_init
 		flux['lambda'] = lc
 		flux['nu'] = nuc
-    
-		path = "/Doublets/"+Line+"/"+sns+".p"
-		pickle.dump( tau, open( "Output/"+Model+"/Optical_depth/"+path, "wb" ) )
-		pickle.dump( flux, open( "Output/"+Model+"/Flux/"+path, "wb" ) )    
+		
+		path1 = "Output/"+Model+"/Optical_depth/Doublets/"+Line+"/"
+		path2 = "Output/"+Model+"/Flux/Doublets/"+Line+"/"
+		if not os.path.exists(path1):
+			os.mkdir(path1)
+		if not os.path.exists(path2):
+			os.mkdir(path2)
+		pickle.dump( tau, open( path1+sns+".p", "wb" ) )
+		pickle.dump( flux, open( path2+sns+".p", "wb" ) )    
