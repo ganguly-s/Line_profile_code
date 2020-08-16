@@ -61,105 +61,105 @@ def get_Model(mname):
 
 def get_Line(line):
     # non-doublets
-    if (line=='C II'):
+    if (line=='C_II'):
         opacity_file = "XSTARtab/c_ii_1335.dat"
         lines = [1335.71, 1334.52]
         matom = mp * 12      # mass of target atom in g
-    if (line=='Fe XXV'):
+    if (line=='Fe_XXV'):
         opacity_file = "XSTARtab/fe_xxv_6.7keV.dat"
         lines = [1.8505]
         matom = mp * 52       # mass of target atom in g
-    if (line=='O VII'):
+    if (line=='O_VII'):
         opacity_file = "XSTARtab/o_vii_22.dat"
         lines = [21.602]
         matom = mp * 16      # mass of target atom in g
-    if (line=='Ne VIII'):
+    if (line=='Ne_VIII'):
         opacity_file = "XSTARtab/ne_viii_780.dat"
         lines = [780.324]
         matom = mp * 20.     # mass of target atom in g 
-    if (line=='S IV'):
+    if (line=='S_IV'):
         opacity_file = "XSTARtab/s_iv_1073.dat"
         lines = [1072.97, 1073.51]
         matom = mp * 32.     # mass of target atom in g 
-    if (line=='S IV*'):
+    if (line=='S_IV*'):
         opacity_file = "XSTARtab/s_iv_1063.dat"
         lines = [1062.66]
         matom = mp * 32.     # mass of target atom in g 
-    if (line=='Si III'):
+    if (line=='Si_III'):
         opacity_file = "XSTARtab/si_iii_1206.dat"
         lines = [1206.5]
         matom = mp * 28.     # mass of target atom in g 
-    if (line=='Mg II'):
+    if (line=='Mg_II'):
         opacity_file = "XSTARtab/mg_ii_2798.dat"
         lines = [2798.75]
         matom = mp * 24.
-    if (line=='S XVI'):
+    if (line=='S_XVI'):
         opacity_file = "XSTARtab/s_xvi_4.dat"
         lines = [3.9908] 
         matom = mp * 32.
-    if (line=='Ar XVIII'):
+    if (line=='Ar_XVIII'):
         opacity_file  = "XSTARtab/ar_xviii_4.dat"
         lines = [3.7311] 
         matom = mp * 36.
     
     # doublets
-    if (line=='C IV'):
+    if (line=='C_IV'):
         opacity_file = "XSTARtab/c_iv_1550.dat"
         lines = [1550.77, 1548.2]
         matom = mp * 12      # mass of target atom in g
-    if (line=='C VI'):
+    if (line=='C_VI'):
         opacity_file = "XSTARtab/c_vi_33.dat"
         lines = [33.7396, 33.7342]	
         matom = mp * 12      # mass of target atom in g
-    if (line=='Fe XXVI'):
+    if (line=='Fe_XXVI'):
         opacity_file = "XSTARtab/fe_xxvi_6.966keV.dat"
         lines = [1.78344, 1.77802]
         matom = mp * 52       # mass of target atom in g
-    if (line=='O VI'):
+    if (line=='O_VI'):
         opacity_file = "XSTARtab/o_vi_1034.dat"
         lines = [1031.91, 1037.61] 
         matom = mp * 16      # mass of target atom in g
-    if (line=='He II'):
+    if (line=='He_II'):
         opacity_file = "XSTARtab/he_ii_304.dat"
         lines = [303.786, 303.78]
         matom = mp * 4       # mass of target atom in g
-    if (line=='N V'):
+    if (line=='N_V'):
         opacity_file = "XSTARtab/n_v_1240.dat"
         lines = [1238.82,1242.8]
         matom = mp * 14.     # mass of target atom in g  
-    if (line=='O VIII'):
+    if (line=='O_VIII_19'):
         opacity_file = "XSTARtab/o_viii_19.dat"
         lines = [18.9725,18.9671]
         matom = mp * 16      # mass of target atom in g
-    if (line=='Si IV'):
+    if (line=='Si_IV'):
         opacity_file = "XSTARtab/si_iv_1394.dat"
         lines = [1393.76, 1402.77]
         matom = mp * 28.     # mass of target atom in g 
-    if (line=='Mg XII'):
+    if (line=='Mg_XII'):
         opacity_file = "XSTARtab/mg_xii_7.dat"
         lines = [7.10691, 7.10577]
         matom = mp * 24
-    if (line=='N VII'):
+    if (line=='N_VII'):
         opacity_file = "XSTARtab/n_vii_25.dat"
         lines = [24.7846, 24.7792]
         matom = mp * 14  
-    if (line=='Ne X'):
+    if (line=='Ne_X'):
         opacity_file = "XSTARtab/ne_x_10.dat"
         lines = [10.2396, 10.2385]
         matom = mp * 20.
-    if (line=='O VIII 15'):
+    if (line=='O_VIII_15'):
         opacity_file = "XSTARtab/o_viii_15.dat"
         lines = [15.1765, 15.176]
         matom = mp * 16.
-    if (line=='O VIII 16'):
+    if (line=='O_VIII_16'):
         opacity_file = "XSTARtab/o_viii_16.dat"
         lines = [16.0067, 16.0055]
         matom = mp * 16.
-    if (line=='Si XIV 5'):
+    if (line=='Si_XIV_5'):
         opacity_file = "XSTARtab/si_xiv_5.dat"
         lines = [5.21795,5.21681]
         matom = mp * 28.
-    if(line=='Si XIV 6'):
+    if(line=='Si_XIV_6'):
         opacity_file = "XSTARtab/si_xiv_6.dat"
         lines = [6.18583,6.18042]
         matom = mp * 28.
