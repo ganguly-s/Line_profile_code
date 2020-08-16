@@ -1,4 +1,4 @@
-!/usr/bin/env python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Created on Wed Aug 12 20:46:02 2020
@@ -13,14 +13,13 @@ import time
 import get_inp as gi
 import line_profile_op as lptst
 
-num_threads = 4
+num_threads = 24
 
 q = queue.Queue()
 
 Model = ['Ax8', 'Bx8']
-Line = ['Mg XII','Mg II','C II','Fe XXV','Fe XXVI','O VII','Ne VIII','S IV','S IV*','Si III','C IV','C VI','O VI','He II','N V','O VIII','Si IV','N VII','O VIII 15','O VIII 16','Ne X','S XVI 4','Ar XVIII','Si XIV 5','Si XIV 6']
-Doublets = ['Si XIV 6','Si XIV 5','Mg XII','C II','S IV','C IV','C VI','Fe XXVI','O VI','He II','N V','O VIII','Si IV']
-Line = ['C IV']
+Line = ['Mg_XII','Si_XIV_6','Si_XIV_5','Fe_XXV','Fe_XXVI','O_VII','Ne_VIII','S_IV','S_IV*','Si_III','C_IV','C_VI','O_VI','He_II','N_V','O_VIII_19','Si_IV','N_VII','O_VIII_15','O_VIII_16','Ne_X','S_XVI_4','Ar_XVIII','Mg_II','C_II']
+Line = ['C_IV']
 start = time.time()
 def worker():
 	while True:
@@ -30,6 +29,7 @@ def worker():
         
 for i in range(num_threads):
 	t = threading.Thread(target=worker, daemon=True)
+	print(f"Begin executing thread {i}")
 	t.start()
 
 for mod in Model:
@@ -38,9 +38,7 @@ for mod in Model:
 	for i,sn in enumerate(lst):
 		for l in Line:
 			q.put([mod, sn, l])
-		#if i==3:
-		break
-    
 q.join()
+print("Done executing thread")
 finish = time.time()
-print(f"DOne in {round(finish-start,2)} seconds")
+print(f"DOne in {round(finish-start,2)} secs")
