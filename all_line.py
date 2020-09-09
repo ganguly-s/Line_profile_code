@@ -10,21 +10,20 @@ import fnmatch
 import get_inp as gi
 import line_profile_test_02 as lptst
 
-if 0:
+if 1:
     Model = ['Ax8']#,'Bx8']
     Line = ['Mg XII','Mg II','C II','Fe XXV','Fe XXVI','O VII','Ne VIII','S IV','S IV*','Si III','C IV','C VI','O VI','He II','N V','O VIII','Si IV']
     Doublets = ['Si XIV 6','Mg XII','C II','S IV','C IV','C VI','Fe XXVI','O VI','He II','N V','O VIII','Si IV']
-    Line = ['Si XIV 6']
-    Line = ['He II']
+    Line = ['C_IV']
     for i in range(len(Model)):
         f1,f2,sn = gi.get_Model(Model[i])
         for j in range(len(Line)):
             ot, line, ma = gi.get_Line(Line[j])
-            lptst.LP_vel(f1,f2,ot,line, ma, Model[i],Line[j],sn)
+            lptst.LP_calc(f1,f2,ot,line, ma, Model[i],Line[j],sn)
             if Line[j] in Doublets:
                 lptst.LP_freq(f1,f2,ot,line, ma, Model[i],Line[j],sn)
             
-if 1:
+if 0:
     Line = ['Mg XII','C II','Fe XXV','Fe XXVI','O VII','Ne VIII','S IV','S IV*','Si III','C IV','C VI','O VI','He II','N V','O VIII','Si IV']
     Line = ['Si XIV 6']
     Doublets = ['Si XIV 6','Mg XII','C II','S IV','C IV','C VI','Fe XXVI','O VI','He II','N V','O VIII','Si IV']
