@@ -15,7 +15,7 @@ import matplotlib.animation as animation
 import os, fnmatch
 from opacity_table_v3 import *           # reads XSTAR lookup table
 from my_athena_reader import *           # reads Athena++ output file
-
+import get_inp as gi
 # constants we'll need
 mp  = 1.6726231e-24                      # 1.67262178e-24 g
 C   = 3.0e10                             # 2.99792458e+10 cm / s
@@ -28,8 +28,10 @@ mu  = 0.6
 # for B
 path = 'model_dumps/AGN1-HEP17-3e-1-es-hi-hires-x8/'
 path = 'Output/fluxB_hires/Doublets/Mg XII/'
+path = 'Data_import_sekacz/Bx8/C_VI/'
 Model = 'Bx8'
-Line = 'Mg XII'
+Line = 'C_VI'
+opacity_file,lines,matom = gi.get_Line(Line)
 lst = os.listdir(path)
 lst.sort()
 
@@ -55,7 +57,7 @@ plt.rcParams['legend.frameon'] = False
 plt.rcParams['legend.handletextpad'] = 0.3
 
 im   = axs.plot([],[], 'k')#[0] 
-im1  = axs.plot([],[], 'k--')
+#im1  = axs.plot([],[], 'k--')
 # set label names
 axs.set_xlabel("v [km/s]")
 axs.set_ylabel(r"$I_\nu$",rotation=0,fontsize=fs)
@@ -74,7 +76,7 @@ axs.set_ylim(0,1)
 def init():
     for sp in range(1):
         im[sp].set_data([], [],'k')
-        im1[sp].set_data([], [], 'k--')
+        #im1[sp].set_data([], [], 'k--')
         #legs[sp].texts[0].set_text('')
     time_text1.set_text('')
     time_text2.set_text('')
@@ -82,12 +84,13 @@ def init():
 
 def update(i):
     f = pickle.load(open(path+"/"+lst[i],"rb"))
-    f1 = pickle.load(open('Output/averageB/Doublets/Mg XII/flux_100.p','rb'))
+    key = 'flux_'+str(lines[0])
+    #f1 = pickle.load(open('Output/averageB/Doublets/Mg XII/flux_100.p','rb'))
     for sp in range(1):
         x = f['v']
-        y = f[Line]
+        y = f[key]
         im[sp].set_data(x,y)
-        im1[sp].set_data(f1['v'],f1[Line])
+        #im1[sp].set_data(f1['v'],f1[Line])
         im[sp].axes.set_ylim(0,1)
     lab = str(i).zfill(5)
     time_text1.set_text(lab)
@@ -101,5 +104,6 @@ ani = anim.FuncAnimation(fig,update, frames=len(lst),blit=False,interval=100)
 # for A 
 #ani.save(filename='flowAx8.mp4', fps=30, extra_args=['-vcodec', 'libx264'])
 # for B
-ani.save(filename='Mg_XII_Bx8.mp4', fps=30, extra_args=['-vcodec', 'libx264'])
+#ani.save(filename='Mg_XII_Bx8.mp4', fps=30, extra_args=['-vcodec', 'libx264'])
+ani.save(filename='tst.mp4', fps=30, extra_args=['-vcodec', 'libx264'])
 plt.show()
